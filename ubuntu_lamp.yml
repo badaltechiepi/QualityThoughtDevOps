@@ -10,7 +10,7 @@
         state: present
     - name: install php packages
       apt:   
-       name: {{ item }}
+       name: "{{ item }}"
        state: present  
       loop:
         - php
