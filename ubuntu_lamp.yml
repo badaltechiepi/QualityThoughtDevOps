@@ -4,12 +4,13 @@
   become: true
   tasks:
     - name: install apache2
-      yum: 
+      apt: 
          name: apache2
          update_cache: yes
          state: installed
     - name: enable service httpd and ensure it is not masked
-      systemd:
+      service:
         name: apache2
         enabled: yes
+        state: present
         
