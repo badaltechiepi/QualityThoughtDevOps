@@ -1,0 +1,35 @@
+---
+    - name: "installing tomcat"
+      hosts: ubuntu
+      become: true
+      tasks:
+        - name: tomcat installation
+          package:
+            name: "{{ item }}"
+            state: present
+          when: ansible_facts['os_family'] == "Debian"
+          loop: "{{ tomacat_packages }}"
+        - name: Tomcat is installed and running
+          systemd:
+            state: started
+            name: tomcat8
+          when: ansible_facts['os_family'] == "Debian"
+        - name: Make sure a service is running
+          systemd:
+            enabled: yes
+            name: tomcat8
+          when: ansible_facts['os_family'] == "Debian"
+    - name: Make sure a service is running
+      systemd:
+        enabled: yes
+        name: tomcat8
+      when: ansible_facts['os_family'] == "Debian"  
+      handlers:
+        - name: enable and start some package
+          service:
+            name: {{some_package }}
+            enabled: yes
+            state: restarted
+
+
+                
