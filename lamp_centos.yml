@@ -1,15 +1,16 @@
 ---
 - name: "configuring lamp in centose"
-  hosts: all
+  hosts: centos
   become: true
   tasks:
-    - name: install httpd
+    - name: install apache2
       yum: 
          name: httpd
          update_cache: yes
          state: installed
-    - name: enable service httpd and ensure it is not masked
+    - name: enable and start the apache2
       systemd:
         name: httpd
         enabled: yes
+        state: restarted
           
