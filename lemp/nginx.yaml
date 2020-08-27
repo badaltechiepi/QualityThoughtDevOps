@@ -3,12 +3,11 @@
   hosts: all
   become: yes
   tasks:
-    - name: update the package
-      apt:
-        update_cache: yes
+    
     - name: install the nginx
       apt:
         name: nginx
+        update_cache: yes
         state: present 
     - name: enable and restart the service
       service:

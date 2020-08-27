@@ -1,0 +1,15 @@
+---
+- name: installation of lemp
+  hosts: all
+  become: true
+  tasks:
+    - name: update the package and install nginx
+      yum:
+        name: nginx
+        update_cache: yes
+        state: present
+    - name: enable and start the service
+      service:
+        name: nginx
+        enabled: yes
+        state: started    
