@@ -8,6 +8,13 @@
         name: nginx
         update_cache: yes
         state: present
+    - name: php installation 
+      apt:
+        name:
+         - php-fpm
+         - php-mysql
+        state: present 
+    
     - name: enable and start the service
       service:
         name: nginx
