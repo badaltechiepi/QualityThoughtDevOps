@@ -1,6 +1,6 @@
 ---
 - name: installing nginx
-  hosts: all
+  hosts: webserver
   become: yes
   tasks:
     
@@ -8,7 +8,15 @@
       apt:
         name: nginx
         update_cache: yes
-        state: present 
+        state: present
+    - name: installing the php
+      apt:
+       name: "{{ item }}"
+       with_items:
+        - php
+        - php-fpm
+        - php-mysql
+      state: absent 
     - name: enable and restart the service
       service:
         name: nginx
