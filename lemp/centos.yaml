@@ -1,6 +1,6 @@
 ---
 - name: installation of lemp
-  hosts: all
+  hosts: ubuntu
   become: true
   tasks:
     - name: update the package and install nginx
@@ -13,8 +13,8 @@
         name:
          - php-fpm
          - php-mysql
-        state: present 
-    
+        state: present   
+         
     - name: enable and start the service
       service:
         name: nginx
