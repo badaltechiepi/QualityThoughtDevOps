@@ -9,4 +9,9 @@
     - name: install the nginx
       apt:
         name: nginx
-        state: present    
+        state: present 
+    - name: enable and restart the service
+      service:
+        name: nginx
+        enable: yes
+        state: restarted       
