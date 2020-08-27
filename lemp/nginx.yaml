@@ -13,5 +13,5 @@
     - name: enable and restart the service
       service:
         name: nginx
-        enable: yes
+        enabled: yes
         state: restarted       
